@@ -1,1 +1,24 @@
 
+:root {
+    --card-bg-color: #2a2332;
+    --image-bg-color: #665f6c;
+}
+.pokemon-card {
+    padding: 1em;
+    width: 500px;
+    background-color: var(--card-bg-color);
+    color: aliceblue;
+    font-size: 1.5em;
+}
+
+.pokemon-card .card-img {
+    height: 500px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    padding-bottom: 0.5em;
+    background-color: var(--image-bg-color);
+}
+
+.pokemon-card .subtitle {
+    padding-top: 0.5em;
+}
