@@ -22,3 +22,9 @@
 .pokemon-card .subtitle {
     padding-top: 0.5em;
 }
+
+#cards {
+    display: flex;
+    flex-direction: row;
+    gap: 12em;
+}

@@ -1,19 +1,32 @@
-import { Pokemon, getPokemon } from "./api.js";
+import { Pokemon, getPokemon, getRandomPokemon } from "./api.js";
 
 // HTML elements
 const card1 = document.querySelector("#card-1");
 const cardImg1 = document.querySelector("#card-1 > .card-img");
 const cardSubtitle1 = document.querySelector("#card-1 > .subtitle");
 
+const card2 = document.querySelector("#card-2");
+const cardImg2 = document.querySelector("#card-2 > .card-img");
+const cardSubtitle2 = document.querySelector("#card-2 > .subtitle");
+
+//stat being selected 
 var selectedStat = "HP";
 
-async function setPokemon() {
-    const pokemon = await getPokemon(681);
-    console.log(pokemon);
-    cardImg1.style.backgroundImage = `url(${pokemon.imageUrl})`;
+//pokemon being compared
+var pokemon1;
+var pokemon2;
+
+// set both pokemon
+// start a new game
+async function setBothPokemon() {
+    pokemon1 = await getRandomPokemon();
+    pokemon2 = await getRandomPokemon();
+    cardImg1.style.backgroundImage = `url(${pokemon1.imageUrl})`;
+    cardImg2.style.backgroundImage = `url(${pokemon2.imageUrl})`;
     //set selectedStat
     selectedStat = getRandomStat();
-    cardSubtitle1.textContent = `${pokemon.name}, ${getProperStatName(selectedStat)}: ${pokemon[selectedStat]}`;
+    cardSubtitle1.textContent = `${pokemon1.name}, ${getProperStatName(selectedStat)}: ${pokemon1[selectedStat]}`;
+    cardSubtitle2.textContent = `${pokemon2.name}, ${getProperStatName(selectedStat)}: ${pokemon2[selectedStat]}`;
 }
 
 function getRandomStat() {
@@ -35,6 +48,6 @@ function getProperStatName(abbrev) {
     return map[abbrev] || abbrev;
 }
 
-setPokemon()
+setBothPokemon();
 
  

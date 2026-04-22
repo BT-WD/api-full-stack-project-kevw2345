@@ -13,6 +13,7 @@ export class Pokemon {
     }
 }
 
+//change pokemon name to title case
 function toTitleCase(str) {
   return str.replace(
     /\w\S*/g,
@@ -20,6 +21,12 @@ function toTitleCase(str) {
   );
 }
 
+//get random pokemon
+export async function getRandomPokemon() {
+    const id = Math.floor(Math.random()*1025) + 1;
+    console.log(id)
+    return getPokemon(id);
+}
 export async function getPokemonJSON (id) {
     const url = `https://pokeapi.co/api/v2/pokemon/${id}/`;
     try {
