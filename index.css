@@ -142,6 +142,80 @@ body {
     border-bottom: 2px solid var(--pokemon-yellow);
 }
 
+/* Streak / Max-streak badges */
+.streak-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  font-weight: 700;
+  font-size: 0.95rem;
+  min-width: 62px;
+  justify-content: center;
+  box-shadow: 0 6px 18px rgba(2,8,23,0.35);
+  backdrop-filter: blur(4px);
+}
+
+.streak-badge .streak-icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.streak-badge .streak-value {
+  min-width: 22px;
+  text-align: center;
+  display: inline-block;
+}
+
+#streak-text {
+  color: #fc6161;
+}
+
+#max-streak-text {
+  color: #ffe26f;
+}
+
+/* spacing between badges when both visible */
+#streak-text, #max-streak-text {
+  display: inline-block;
+  vertical-align: middle;
+  margin-right: 8px;
+}
+
+/* Next button (appears after a guess) */
+.next-btn {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 8px 14px;
+  border-radius: 10px;
+  border: 1px solid rgba(255,255,255,0.04);
+  background: linear-gradient(180deg, #1b1f24, #121418); /* darker, subtle gradient */
+  color: #e6eef8; /* soft off-white */
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 6px 18px rgba(0,0,0,0.6);
+  transition: transform 120ms ease, box-shadow 120ms ease, background 120ms ease, border-color 120ms ease;
+  font-size: 0.95rem;
+  backdrop-filter: blur(6px);
+}
+
+.next-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(180deg, #23262a, #16181b);
+  border-color: rgba(255,255,255,0.06);
+  box-shadow: 0 10px 30px rgba(2,8,23,0.5);
+}
+
+.next-btn:active {
+  transform: translateY(0);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.6);
+  background: linear-gradient(180deg, #151719, #0f1012);
+}
+
+/* visually hide when hidden attribute set (keeps layout stable) */
+.next-btn[hidden] { opacity: 0; pointer-events: none; transform: scale(0.98); height: 0; margin-top: 0; padding: 0 14px; }
+
 /* Mobile View */
 @media (max-width: 768px) {
     #cards {
