@@ -1,4 +1,4 @@
-
+/*
 :root {
     --card-bg-color: #2a2332;
     --image-bg-color: #665f6c;
@@ -27,4 +27,135 @@
     display: flex;
     flex-direction: row;
     gap: 12em;
+}
+
+*/
+
+/* index.css */
+
+:root {
+    --primary-red: #ff5e5e;
+    --pokemon-yellow: #ffcb05;
+    --dark-blue: #5164e8;
+    --bg-color: #121212;      /* Deep dark background */
+    --card-bg: #1e1e1e;      /* Slightly lighter card background */
+    --text-main: #e0e0e0;    /* Soft white for readability */
+    --text-dim: #a0a0a0;     /* Muted grey for stats */
+    --border-color: #333333;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+body {
+    background-color: var(--bg-color);
+    color: var(--text-main);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+#cards {
+    display: flex;
+    gap: 2.5rem;
+    align-items: center;
+    padding: 20px;
+    max-width: 1100px;
+    width: 100%;
+}
+
+.pokemon-card {
+    background: var(--card-bg);
+    border: 4px solid var(--border-color);
+    border-radius: 20px;
+    padding: 20px;
+    flex: 1;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Highlight the card on hover */
+.pokemon-card:hover {
+    transform: scale(1.05);
+    border-color: var(--pokemon-yellow);
+    box-shadow: 0 0 20px rgba(255, 203, 5, 0.2);
+}
+
+.card-img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background-size: contain;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-color: #252525;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    border: 1px solid #333;
+}
+
+/* Wrong/right*/
+
+.correct .card-img {
+    background-color: rgb(129, 194, 64);
+}
+
+.wrong .card-img {
+    background-color: rgb(208, 78, 78);
+}
+
+.subtitle h2 {
+    font-size: 2rem;
+    color: #fff;
+    text-transform: capitalize;
+    margin-bottom: 8px;
+    letter-spacing: 0.5px;
+}
+
+.subtitle h3 {
+    font-size: 1.40rem;
+    color: var(--text-dim);
+    font-weight: 500;
+}
+
+.info {
+    flex: 0 0 220px;
+    text-align: center;
+}
+
+#info-text {
+    font-size: 1.3rem;
+    color: var(--text-main);
+    line-height: 1.5;
+}
+
+/* Highlight the stat name */
+#info-text u {
+    color: var(--pokemon-yellow);
+    text-decoration: none;
+    border-bottom: 2px solid var(--pokemon-yellow);
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    #cards {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .info {
+        order: -1;
+        margin-bottom: 10px;
+    }
+
+    .pokemon-card {
+        width: 100%;
+        max-width: 350px;
+    }
 }
