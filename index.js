@@ -74,7 +74,7 @@ async function setBothPokemon() {
     cardImg1.style.backgroundImage = `url(${pokemon1.imageUrl})`;
     cardImg2.style.backgroundImage = `url(${pokemon2.imageUrl})`;
     //set selectedStat
-    selectedStat = getRandomStat()
+    // selectedStat is set when the round ends (showNextButton), so don't randomize here
     //update card text
     updateCardText(1, `${pokemon1.name}`, `${getProperStatName(selectedStat)}: ???`)
     updateCardText(2, `${pokemon2.name}`, `${getProperStatName(selectedStat)}: ???`)
@@ -211,12 +211,14 @@ function getResult(cardNumber) {
 // show the Next button and stash state needed for advancing
 function showNextButton(correct, chosenCardNumber) {
   if (!nextBtn) return;
-  nextBtn.hidden = false;
-  nextBtn.setAttribute("aria-hidden", "false");
-  nextBtn.dataset.correct = correct ? "1" : "0";
-  nextBtn.dataset.chosen = String(chosenCardNumber || 1);
-  // focus for accessibility so keyboard users can proceed quickly
-  nextBtn.focus();
+  // Randomize the stat for the upcoming round immediately after this round finishes
+  selectedStat = getRandomStat();
+   nextBtn.hidden = false;
+   nextBtn.setAttribute("aria-hidden", "false");
+   nextBtn.dataset.correct = correct ? "1" : "0";
+   nextBtn.dataset.chosen = String(chosenCardNumber || 1);
+   // focus for accessibility so keyboard users can proceed quickly
+   nextBtn.focus();
 }
 
 // handle Next button click
@@ -227,8 +229,6 @@ if (nextBtn) {
     // hide button while we advance
     nextBtn.hidden = true;
     nextBtn.setAttribute("aria-hidden", "true");
-    selectedStat = getRandomStat();
-
     if (correct) {
       setOnePokemon(chosen);
     } else {
@@ -246,7 +246,10 @@ function onCardClick(cardNumber) {
   }
 }
 
-document.getElementById('card-1').addEventListener('click', () => onCardClick(1));
-document.getElementById('card-2').addEventListener('click', () => onCardClick(2));
-setBothPokemon();
+
+// ensure the very first round has a randomized stat
+selectedStat = getRandomStat();
+ document.getElementById('card-1').addEventListener('click', () => onCardClick(1));
+ document.getElementById('card-2').addEventListener('click', () => onCardClick(2));
+ setBothPokemon();
 
