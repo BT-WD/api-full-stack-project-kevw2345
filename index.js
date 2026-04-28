@@ -227,6 +227,7 @@ if (nextBtn) {
     // hide button while we advance
     nextBtn.hidden = true;
     nextBtn.setAttribute("aria-hidden", "true");
+    selectedStat = getRandomStat();
 
     if (correct) {
       setOnePokemon(chosen);
